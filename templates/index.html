@@ -2,9 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <div class="container">
+        <h2>Breast Cancer Prediction</h2>
+        <form id="predictionForm">
+            <div class="form-group">
+                <label for="radius">Radius:</label>
+                <input type="number" id="radius" name="radius" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="texture">Texture:</label>
+                <input type="number" id="texture" name="texture" step="0.01" required>
+            </div>
+            <!-- Repeat for other features -->
+            <div class="form-group">
+                <label for="fractal_dimension">Fractal Dimension:</label>
+                <input type="number" id="fractal_dimension" name="fractal_dimension" step="0.01" required>
+            </div>
 
+            <button type="submit">Predict</button>
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
 </body>
 </html>

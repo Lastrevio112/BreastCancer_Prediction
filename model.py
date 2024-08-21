@@ -111,3 +111,9 @@ print("F1 Score: ", f1)
 
 #Saving the model
 pickle.dump(lr, open('LR_model.pkl', 'wb'))
+
+print(feature_list)
+# write feature_list to a file
+with open('features.txt', 'w') as f:
+    for feature in feature_list:
+        f.write(feature + '\n')
