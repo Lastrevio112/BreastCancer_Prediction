@@ -10,7 +10,6 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import cross_val_score
-from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 import pickle
 
@@ -38,11 +37,6 @@ X = X.drop(to_drop, axis=1)
 #Splitting data into training and testing set
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 
-#Feature scaling
-scaler = StandardScaler()
-X_train_scaled = scaler.fit_transform(X_train)
-X_test_scaled = scaler.transform(X_test)
-
 
 # # Random Forest
 # rf = RandomForestClassifier()
@@ -53,7 +47,7 @@ X_test_scaled = scaler.transform(X_test)
 #     'min_samples_leaf': [1, 5, 10]
 # }
 # rf_grid = GridSearchCV(rf, rf_params, cv=5)
-# rf_grid.fit(X_train_scaled, y_train)
+# rf_grid.fit(X_train, y_train)
 #
 # # Decision Tree
 # dt = DecisionTreeClassifier()
@@ -64,7 +58,7 @@ X_test_scaled = scaler.transform(X_test)
 #     'min_samples_leaf': [1, 5, 10]
 # }
 # dt_grid = GridSearchCV(dt, dt_params, cv=5)
-# dt_grid.fit(X_train_scaled, y_train)
+# dt_grid.fit(X_train, y_train)
 #
 # # K-Nearest Neighbors
 # knn = KNeighborsClassifier()
@@ -74,7 +68,7 @@ X_test_scaled = scaler.transform(X_test)
 #     'p': [1, 2]
 # }
 # knn_grid = GridSearchCV(knn, knn_params, cv=5)
-# knn_grid.fit(X_train_scaled, y_train)
+# knn_grid.fit(X_train, y_train)
 #
 # # Logistic Regression
 # lr = LogisticRegression()
@@ -83,7 +77,7 @@ X_test_scaled = scaler.transform(X_test)
 #     'C': [0.1, 0.3, 1, 10]
 # }
 # lr_grid = GridSearchCV(lr, lr_params, cv=5)
-# lr_grid.fit(X_train_scaled, y_train)
+# lr_grid.fit(X_train, y_train)
 #
 # # Print the best parameters and scores for each model
 # print("Best Parameters for Random Forest:", rf_grid.best_params_)
@@ -104,9 +98,9 @@ X_test_scaled = scaler.transform(X_test)
 # print(f"Model saved to {model_filename}")
 
 lr = LogisticRegression(penalty='l2', C=0.3)
-lr.fit(X_train_scaled, y_train)
+lr.fit(X_train, y_train)
 
-y_pred = lr.predict(X_test_scaled)
+y_pred = lr.predict(X_test)
 
 accuracy = accuracy_score(y_test, y_pred)
 precision = precision_score(y_test, y_pred, pos_label='M')
@@ -119,9 +113,6 @@ print("Recall: ", recall)
 print("F1 Score: ", f1)
 
 feature_list = list(X.columns)
-prediction = func.predict_tumor(lr, X_test_scaled[0])
-#prediction = lr.predict(pd.DataFrame(X_test_scaled[0]).transpose())
-print(prediction)
 
 
 
