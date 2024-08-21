@@ -20,8 +20,6 @@ df = pd.read_csv('dataIN/data.csv')
 X = df.drop(['id', 'diagnosis', 'Unnamed: 32'], axis=1)
 y = df['diagnosis']
 
-feature_list = list(X.columns)
-
 #Exploratory data analysis
 corr_matrix = X.corr()
 plt.figure(figsize=(10, 8))
@@ -35,6 +33,8 @@ upper = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(bool))
 # Find index of feature columns with correlation greater than 0.95
 to_drop = [column for column in upper.columns if any(upper[column].abs() > 0.95)]
 X = X.drop(to_drop, axis=1)
+
+feature_list = list(X.columns)
 
 #Splitting data into training and testing set
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)

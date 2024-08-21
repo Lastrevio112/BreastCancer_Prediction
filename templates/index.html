@@ -11,17 +11,96 @@
         <h2>Breast Cancer Prediction</h2>
         <form id="predictionForm">
             <div class="form-group">
-                <label for="radius">Radius:</label>
-                <input type="number" id="radius" name="radius" step="0.01" required>
+                <label for="radius_mean">1. Radius Mean:</label>
+                <input type="number" id="radius_mean" name="radius_mean" step="0.00001" required>
             </div>
             <div class="form-group">
-                <label for="texture">Texture:</label>
-                <input type="number" id="texture" name="texture" step="0.01" required>
+                <label for="texture_mean">2. Texture Mean:</label>
+                <input type="number" id="texture_mean" name="texture_mean" step="0.00001" required>
             </div>
-            <!-- Repeat for other features -->
             <div class="form-group">
-                <label for="fractal_dimension">Fractal Dimension:</label>
-                <input type="number" id="fractal_dimension" name="fractal_dimension" step="0.01" required>
+                <label for="smoothness_mean">3. Smoothness Mean:</label>
+                <input type="number" id="smoothness_mean" name="smoothness_mean" step="0.00001" required>
+            </div>
+            <div class="form-group">
+                <label for="compactness_mean">4. Compactness Mean:</label>
+                <input type="number" id="compactness_mean" name="compactness_mean" step="0.00001" required>
+            </div>
+            <div class="form-group">
+                <label for="concavity_mean">5. Concavity Mean:</label>
+                <input type="number" id="concavity_mean" name="concavity_mean" step="0.00001" required>
+            </div>
+            <div class="form-group">
+                <label for="concave_points_mean">6. Concave Points Mean:</label>
+                <input type="number" id="concave_points_mean" name="concave_points_mean" step="0.00001" required>
+            </div>
+            <div class="form-group">
+                <label for="symmetry_mean">7. Symmetry Mean:</label>
+                <input type="number" id="symmetry_mean" name="symmetry_mean" step="0.00001" required>
+            </div>
+            <div class="form-group">
+                <label for="fractal_dimension_mean">8. Fractal Dimension Mean:</label>
+                <input type="number" id="fractal_dimension_mean" name="fractal_dimension_mean" step="0.00001" required>
+            </div>
+            <div class="form-group">
+                <label for="radius_se">9. Radius SE:</label>
+                <input type="number" id="radius_se" name="radius_se" step="0.00001" required>
+            </div>
+            <div class="form-group">
+                <label for="texture_se">10. Texture SE:</label>
+                <input type="number" id="texture_se" name="texture_se" step="0.00001" required>
+            </div>
+            <div class="form-group">
+                <label for="smoothness_se">11. Smoothness SE:</label>
+                <input type="number" id="smoothness_se" name="smoothness_se" step="0.00001" required>
+            </div>
+            <div class="form-group">
+                <label for="compactness_se">12. Compactness SE:</label>
+                <input type="number" id="compactness_se" name="compactness_se" step="0.00001" required>
+            </div>
+            <div class="form-group">
+                <label for="concavity_se">13. Concavity SE:</label>
+                <input type="number" id="concavity_se" name="concavity_se" step="0.00001" required>
+            </div>
+            <div class="form-group">
+                <label for="concave_points_se">14. Concave Points SE:</label>
+                <input type="number" id="concave_points_se" name="concave_points_se" step="0.00001" required>
+            </div>
+            <div class="form-group">
+                <label for="symmetry_se">15. Symmetry SE:</label>
+                <input type="number" id="symmetry_se" name="symmetry_se" step="0.00001" required>
+            </div>
+            <div class="form-group">
+                <label for="fractal_dimension_se">16. Fractal Dimension SE:</label>
+                <input type="number" id="fractal_dimension_se" name="fractal_dimension_se" step="0.00001" required>
+            </div>
+            <div class="form-group">
+                <label for="texture_worst">17. Texture Worst:</label>
+                <input type="number" id="texture_worst" name="texture_worst" step="0.00001" required>
+            </div>
+            <div class="form-group">
+                <label for="smoothness_worst">18. Smoothness Worst:</label>
+                <input type="number" id="smoothness_worst" name="smoothness_worst" step="0.00001" required>
+            </div>
+            <div class="form-group">
+                <label for="compactness_worst">19. Compactness Worst:</label>
+                <input type="number" id="compactness_worst" name="compactness_worst" step="0.00001" required>
+            </div>
+            <div class="form-group">
+                <label for="concavity_worst">20. Concavity Worst:</label>
+                <input type="number" id="concavity_worst" name="concavity_worst" step="0.00001" required>
+            </div>
+            <div class="form-group">
+                <label for="concave_points_worst">21. Concave Points Worst:</label>
+                <input type="number" id="concave_points_worst" name="concave_points_worst" step="0.00001" required>
+            </div>
+            <div class="form-group">
+                <label for="symmetry_worst">22. Symmetry Worst:</label>
+                <input type="number" id="symmetry_worst" name="symmetry_worst" step="0.00001" required>
+            </div>
+            <div class="form-group">
+                <label for="fractal_dimension_worst">23. Fractal Dimension Worst:</label>
+                <input type="number" id="fractal_dimension_worst" name="fractal_dimension_worst" step="0.00001" required>
             </div>
 
             <button type="submit">Predict</button>
