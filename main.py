@@ -20,6 +20,8 @@ df = pd.read_csv('dataIN/data.csv')
 X = df.drop(['id', 'diagnosis', 'Unnamed: 32'], axis=1)
 y = df['diagnosis']
 
+feature_list = list(X.columns)
+
 #Exploratory data analysis
 corr_matrix = X.corr()
 plt.figure(figsize=(10, 8))
@@ -38,64 +40,59 @@ X = X.drop(to_drop, axis=1)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 
 
-# # Random Forest
-# rf = RandomForestClassifier()
-# rf_params = {
-#     'n_estimators': [10, 50, 100, 200],
-#     'max_depth': [None, 5, 10],
-#     'min_samples_split': [2, 5, 10],
-#     'min_samples_leaf': [1, 5, 10]
-# }
-# rf_grid = GridSearchCV(rf, rf_params, cv=5)
-# rf_grid.fit(X_train, y_train)
-#
-# # Decision Tree
-# dt = DecisionTreeClassifier()
-# dt_params = {
-#     'criterion': ['gini', 'entropy'],
-#     'max_depth': [None, 5, 10],
-#     'min_samples_split': [2, 5, 10],
-#     'min_samples_leaf': [1, 5, 10]
-# }
-# dt_grid = GridSearchCV(dt, dt_params, cv=5)
-# dt_grid.fit(X_train, y_train)
-#
-# # K-Nearest Neighbors
-# knn = KNeighborsClassifier()
-# knn_params = {
-#     'n_neighbors': [3, 5, 7, 10],
-#     'weights': ['uniform', 'distance'],
-#     'p': [1, 2]
-# }
-# knn_grid = GridSearchCV(knn, knn_params, cv=5)
-# knn_grid.fit(X_train, y_train)
-#
-# # Logistic Regression
-# lr = LogisticRegression()
-# lr_params = {
-#     'penalty': ['none', 'l2'],
-#     'C': [0.1, 0.3, 1, 10]
-# }
-# lr_grid = GridSearchCV(lr, lr_params, cv=5)
-# lr_grid.fit(X_train, y_train)
-#
-# # Print the best parameters and scores for each model
-# print("Best Parameters for Random Forest:", rf_grid.best_params_)
-# print("Best Score for Random Forest:", rf_grid.best_score_)
-# print("Best Parameters for Decision Tree:", dt_grid.best_params_)
-# print("Best Score for Decision Tree:", dt_grid.best_score_)
-# print("Best Parameters for K-Nearest Neighbors:", knn_grid.best_params_)
-# print("Best Score for K-Nearest Neighbors:", knn_grid.best_score_)
-# print("Best Parameters for Logistic Regression:", lr_grid.best_params_)
-# print("Best Score for Logistic Regression:", lr_grid.best_score_)
+# Random Forest
+rf = RandomForestClassifier()
+rf_params = {
+    'n_estimators': [10, 50, 100, 200],
+    'max_depth': [None, 5, 10],
+    'min_samples_split': [2, 5, 10],
+    'min_samples_leaf': [1, 5, 10]
+}
+rf_grid = GridSearchCV(rf, rf_params, cv=5)
+rf_grid.fit(X_train, y_train)
+
+# Decision Tree
+dt = DecisionTreeClassifier()
+dt_params = {
+    'criterion': ['gini', 'entropy'],
+    'max_depth': [None, 5, 10],
+    'min_samples_split': [2, 5, 10],
+    'min_samples_leaf': [1, 5, 10]
+}
+dt_grid = GridSearchCV(dt, dt_params, cv=5)
+dt_grid.fit(X_train, y_train)
+
+# K-Nearest Neighbors
+knn = KNeighborsClassifier()
+knn_params = {
+    'n_neighbors': [3, 5, 7, 10],
+    'weights': ['uniform', 'distance'],
+    'p': [1, 2]
+}
+knn_grid = GridSearchCV(knn, knn_params, cv=5)
+knn_grid.fit(X_train, y_train)
+
+# Logistic Regression
+lr = LogisticRegression()
+lr_params = {
+    'penalty': ['none', 'l2'],
+    'C': [0.1, 0.3, 1, 10]
+}
+lr_grid = GridSearchCV(lr, lr_params, cv=5)
+lr_grid.fit(X_train, y_train)
+
+# Print the best parameters and scores for each model
+print("Best Parameters for Random Forest:", rf_grid.best_params_)
+print("Best Score for Random Forest:", rf_grid.best_score_)
+print("Best Parameters for Decision Tree:", dt_grid.best_params_)
+print("Best Score for Decision Tree:", dt_grid.best_score_)
+print("Best Parameters for K-Nearest Neighbors:", knn_grid.best_params_)
+print("Best Score for K-Nearest Neighbors:", knn_grid.best_score_)
+print("Best Parameters for Logistic Regression:", lr_grid.best_params_)
+print("Best Score for Logistic Regression:", lr_grid.best_score_)
 
 # #CONCLUSION: LOGISTIC REGRESSION HAS BEST ACCURACY (97.36%) WITH PARAMETERS {'C': 0.3, 'penalty': 'l2'}
-#
-# # save best model to disk
-# model_filename = "logistic_regression_model.pkl"
-# with open(model_filename, 'wb') as f:
-#     pickle.dump(LogisticRegression(**lr_grid.best_params_), f)
-# print(f"Model saved to {model_filename}")
+
 
 lr = LogisticRegression(penalty='l2', C=0.3)
 lr.fit(X_train, y_train)
@@ -112,9 +109,5 @@ print("Precision: ", precision)
 print("Recall: ", recall)
 print("F1 Score: ", f1)
 
-feature_list = list(X.columns)
-
-
-
-
-
+#Saving the model
+pickle.dump(lr, open('LR_model.pkl', 'wb'))
